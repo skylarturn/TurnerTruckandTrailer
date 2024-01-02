@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Reviews - Turner Truck and Trailer LLC</title>
     <style>
-     body {
+        body {
             font-family: Arial, sans-serif;
-            margin: 20px 0;
+            margin: 0;
             padding: 0;
             background-color: #080606;
             display: flex;
@@ -16,7 +16,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-image: url(semi7.jpg);
+            background: linear-gradient(to bottom, #ff6b6b, #2c3e50);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -27,6 +27,11 @@
             color: #fff;
             text-align: center;
             padding: 30px;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
@@ -37,7 +42,7 @@
 
         .logo a {
             text-decoration: none;
-            color: #064514; /* Adjusted link color */
+            color: #fff;
         }
 
         .logo img {
@@ -49,21 +54,22 @@
         h1 {
             font-size: 24px;
             margin: 0;
+            color: #064514;
         }
 
         section {
             max-width: 100%;
-            margin: 20px 10px;
+            margin: 80px 10px 20px; /* Adjusted margin for space below fixed header */
             padding: 20px;
             background-color: #040000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            color: #fff;
         }
 
         .google-reviews-container {
             max-width: 100%;
             margin: 20px auto;
-            
         }
 
         .top-right-buttons {
@@ -109,3 +115,4 @@
 </body>
 
 </html>
+
