@@ -5,28 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turner Truck and Trailer LLC</title>
     <style>
-        body {
+          body {
             font-family: Arial, sans-serif;
-            margin: 20px 0;
+            margin: 0;
             padding: 0;
-            background-color: #080606;
+            background: linear-gradient(to bottom, #ff6b6b, #2c3e50);
             color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-image: url(semi7.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
+
         header {
             background-color: #050000;
             color: #064514;
             text-align: center;
-            padding: 30px;
-            
+            padding: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
         }
 
         .logo {
@@ -37,11 +39,11 @@
 
         .logo a {
             text-decoration: none;
-            color: #064514; /* Adjusted link color */
+            color: #064514;
         }
 
         .logo img {
-            max-width: 80px; /* Adjusted max-width for a slightly larger logo */
+            max-width: 80px;
             height: auto;
             margin-right: 10px;
         }
@@ -51,34 +53,34 @@
             margin: 0;
         }
 
+        .top-right-buttons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .top-right-buttons a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
         section {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
             background-color: #040000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
             text-align: center;
         }
 
         img {
             max-width: 100%;
             height: auto;
-            margin-bottom: 20px; /* Added margin to separate images */
+            margin-bottom: 20px;
         }
-
-        .top-right-buttons {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .top-right-buttons a {
-        color: #fff;
-        text-decoration: none;
-        margin-left: 15px; /* Adjusted margin between buttons */
-        font-weight: bold;
-        font-size: 16px;
-    }
 
         .photo-gallery {
             display: grid;
@@ -94,7 +96,6 @@
         .photo-gallery img:hover {
             transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
@@ -105,6 +106,7 @@
                 <img src="TTT.png" alt="Logo">
                 <h1>Turner Truck and Trailer LLC</h1>
             </a>
+        </div>
         <div class="top-right-buttons">
             <a href="ContactUs.html">Contact Us</a>
             <a href="AboutUs.html">About Us</a>
@@ -122,11 +124,8 @@
             <img src="semi2.jpg" alt="Gallery Image 2">
             <img src="semi10.jpg" alt="Gallery Image 3">
             <img src="semi8.jpg" alt="Gallery Image 4">
-
             <!-- Add more images as needed -->
         </div>
-
-        <p></p>
 
         <p>We keep you going so you can keep us going.</p>
     </section>
