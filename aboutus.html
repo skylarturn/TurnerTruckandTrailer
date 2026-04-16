@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,264 +10,181 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --bg: #071029;
-            --card: #0f1724;
-            --muted: #9aa7bd;
-            --accent: #ff7a18;
-            --accent-2: #ffb37a;
-            --white: #ffffff;
-            --radius: 12px;
-            --container: 1100px;
+        :root{
+            --bg-1:#041225;
+            --bg-2:#071029;
+            --panel:#0f1724;
+            --muted:#9aa7bd;
+            --accent:#ff7a18;
+            --accent-2:#ffb37a;
+            --glass: rgba(255,255,255,0.03);
+            --white:#eaf2ff;
+            --radius:14px;
+            --container:1100px;
         }
 
-        /* Reset-ish */
-        * { box-sizing: border-box; }
-        html, body { height: 100%; margin: 0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-        a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+        /* Reset */
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+        a{color:inherit;text-decoration:none}
+        img{display:block;max-width:100%}
 
-        body {
-            background: linear-gradient(180deg, #051428 0%, #071029 45%, #061523 100%);
-            color: var(--white);
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 20px;
-            min-height: 100vh;
+        body{
+            background:
+                radial-gradient(1000px 600px at 10% 10%, rgba(255,122,24,0.06), transparent 8%),
+                linear-gradient(180deg,var(--bg-1),var(--bg-2) 50%, #04161e 100%);
+            color:var(--white);
+            padding:28px;
+            display:flex;
+            align-items:flex-start;
+            justify-content:center;
+            min-height:100vh;
         }
 
-        .site {
+        .site{
             width:100%;
-            max-width:var(--max-width);
+            max-width:var(--container);
+            padding:12px;
         }
 
-        header {
+        header{
             display:flex;
             align-items:center;
             justify-content:space-between;
             gap:16px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            padding:14px 18px;
-            border-radius:14px;
-            box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+            padding:14px;
+            border-radius:var(--radius);
+            background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+            border:1px solid rgba(255,255,255,0.02);
+            box-shadow: 0 10px 35px rgba(2,6,23,0.6);
             backdrop-filter: blur(6px);
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .brand img {
-            width: 56px;
-            height: 56px;
-            object-fit: contain;
-            border-radius: 8px;
-            background: linear-gradient(135deg,var(--accent),var(--accent-2));
-            padding: 6px;
-            flex-shrink: 0;
-        }
-
-        .brand h1 {
-            font-size: 16px;
-            margin: 0;
-            line-height: 1.05;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-        }
-
-        nav {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        nav::-webkit-scrollbar { display: none; }
-
-        nav a {
-            color: var(--muted);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        nav a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
-
-        nav a.active {
-            background: linear-gradient(90deg,var(--accent),var(--accent-2));
-            color: #071029;
+        .brand{display:flex;align-items:center;gap:12px}
+        .brand .logo{
+            width:64px;height:64px;border-radius:12px;padding:8px;
+            background:linear-gradient(135deg,var(--accent),var(--accent-2));
+            display:inline-flex;align-items:center;justify-content:center;
             box-shadow: 0 6px 18px rgba(255,122,24,0.12);
+            flex-shrink:0;
+        }
+        .brand img{width:100%;height:100%;object-fit:contain;border-radius:6px;background:transparent;padding:2px}
+        .brand h1{margin:0;font-size:16px;line-height:1.05;font-weight:700}
+        .brand .tag{font-size:12px;color:var(--muted);margin-top:4px}
+
+        nav{
+            display:flex;gap:12px;align-items:center;overflow-x:auto;padding-bottom:6px;
+        }
+        nav::-webkit-scrollbar{display:none}
+        .nav-link{
+            padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600;font-size:14px;
+            transition:all .18s ease;
+        }
+        .nav-link:hover{background:rgba(255,255,255,0.03);color:var(--white);transform:translateY(-1px)}
+        .nav-link.active{
+            background:linear-gradient(90deg,var(--accent),var(--accent-2));
+            color:#071029;
+            box-shadow:0 8px 26px rgba(255,122,24,0.12);
         }
 
-        main.card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: var(--radius);
-            padding: 22px;
-            box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+        main.card{
+            margin-top:18px;
+            padding:22px;
+            border-radius:var(--radius);
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.04);
+            box-shadow:0 12px 50px rgba(2,6,23,0.6);
         }
 
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 16px;
-            align-items: center;
-            margin-bottom: 18px;
+        .hero{
+            display:flex;
+            gap:18px;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:18px;
         }
 
-        .hero h2 {
-            margin: 0 0 6px 0;
-            font-size: 18px;
-            letter-spacing: -0.3px;
+        .hero-left{flex:1}
+        .hero h2{margin:0 0 8px 0;font-size:20px}
+        .hero p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+
+        .hero-graphic{
+            width:220px;
+            height:110px;
+            border-radius:12px;
+            background:linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border:1px solid rgba(255,255,255,0.03);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+            flex-shrink:0;
+        }
+        .hero-graphic svg{width:86%;height:86%;opacity:0.9}
+
+        .cta{display:inline-flex;gap:12px;align-items:center}
+        .btn{
+            background:var(--accent);
+            color:#071029;
+            padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;border:none;cursor:pointer;
+            display:inline-flex;align-items:center;gap:8px;transition:transform .14s ease, box-shadow .14s ease, opacity .14s ease;
+            box-shadow:0 10px 30px rgba(255,122,24,0.08);
+        }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(255,122,24,0.12)}
+        .btn.secondary{
+            background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);box-shadow:none;
         }
 
-        .hero p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px;
+        .content{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+        .about-text{color:var(--white);line-height:1.6;font-size:15px}
+        .about-text p{margin:0 0 12px 0}
+
+        .services{
+            background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+            padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
         }
+        .services h3{margin:0 0 12px 0;color:var(--accent)}
+        .service-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-        .cta {
-            display: inline-flex;
-            gap: 10px;
-            align-items: center;
+        .service-item{
+            display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:10px;background:rgba(255,255,255,0.015);
+            transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+            cursor:default;
         }
-
-        .btn {
-            background: var(--accent);
-            color: #071029;
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .service-item:hover{transform:translateY(-4px);background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow:0 10px 30px rgba(2,6,23,0.45)}
+        .service-icon{
+            width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+            display:inline-flex;align-items:center;justify-content:center;color:#071029;font-weight:800;font-size:14px;flex-shrink:0;
+            box-shadow:0 6px 18px rgba(255,122,24,0.12);
         }
+        .service-item strong{display:block;color:var(--white);font-weight:600;font-size:13px}
+        .service-item .meta{color:var(--muted);font-size:12px;margin-top:3px}
 
-        .btn.secondary {
-            background: transparent;
-            color: var(--muted);
-            border: 1px solid rgba(255,255,255,0.04);
-        }
+        footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:13px;flex-wrap:wrap}
 
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .about-text {
-            color: #e6eefc;
-            line-height: 1.55;
-            font-size: 15px;
-        }
-
-        .about-text p { margin: 0 0 12px 0; }
-
-        .services {
-            background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .services h3 {
-            margin: 0 0 12px 0;
-            font-size: 16px;
-            color: var(--white);
-        }
-
-        .service-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px 12px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .service-item {
-            background: rgba(255,255,255,0.02);
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            color: var(--muted);
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-        }
-
-        .service-item strong { color: var(--white); font-weight: 600; font-size: 13px; }
-
-        footer {
-            margin-top: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            color: var(--muted);
-            font-size: 13px;
-            flex-wrap: wrap;
-        }
-
-        /* Responsive tweaks for phones */
-        @media (max-width: 980px) {
-            .content { grid-template-columns: 1fr; }
-            .hero { grid-template-columns: 1fr; text-align: left; }
-            nav { gap: 10px; }
-            main.card { padding: 18px; }
-        }
-
-        @media (max-width: 640px) {
-            .brand img { width: 48px; height: 48px; }
-            .brand h1 { font-size: 15px; }
-            .service-list { grid-template-columns: 1fr; }
-            .services { padding: 12px; }
-        }
-
-        @media (max-width: 520px) {
-            header { flex-direction: column; align-items: stretch; gap: 10px; }
-            .brand h1 { font-size: 14px; }
-            .site { padding: 0 8px; }
-            main.card { padding: 16px; border-radius: 10px; }
-            .hero { gap: 12px; }
-            .cta { width: 100%; flex-direction: column; align-items: stretch; }
-            .cta .btn { width: 100%; padding: 12px; font-size: 15px; }
-            .cta .btn.secondary { background-clip: padding-box; }
-            .content { gap: 14px; }
-            footer { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .service-item { font-size: 13px; gap: 8px; }
-            .brand img { width: 42px; height: 42px; }
-        }
-
-        @media (max-width: 380px) {
-            .brand h1 { font-size: 13px; }
-            .hero h2 { font-size: 16px; }
-            .about-text { font-size: 14px; }
-            .btn { padding: 10px; font-size: 14px; }
+        /* Responsive */
+        @media (max-width:980px){.content{grid-template-columns:1fr}.hero{flex-direction:column;align-items:flex-start}.hero-graphic{width:100%;height:120px}}
+        @media (max-width:640px){.brand .logo{width:56px;height:56px}.service-list{grid-template-columns:1fr}.hero-graphic{height:96px}}
+        @media (max-width:520px){
+            header{flex-direction:column;align-items:stretch}
+            .cta{width:100%;flex-direction:column}
+            .cta .btn{width:100%}
+            .hero-graphic{display:none}
+            main.card{padding:16px;border-radius:12px}
         }
     </style>
 </head>
-
 <body>
-    <div class="site">
+    <div class="site" role="application">
         <header>
             <a class="brand" href="index.html" aria-label="Turner Truck and Trailer home">
-                <img src="TTT.png" alt="Turner Truck and Trailer logo">
+                <div class="logo">
+                    <!-- keep your TTT.png or replace with an inline SVG; fallback uses image -->
+                    <img src="TTT.png" alt="Turner Truck and Trailer logo" onerror="this.style.display='none'">
+                </div>
                 <div>
                     <h1>Turner Truck & Trailer LLC</h1>
-                    <div style="font-size:12px;color:var(--muted);margin-top:4px">24/7 Mobile Roadside Service</div>
+                    <div class="tag">24/7 Mobile Roadside Service</div>
                 </div>
             </a>
 
@@ -277,16 +193,19 @@
                 <a class="nav-link" href="location.html">Locations</a>
                 <a class="nav-link" href="googlereviews.html">Reviews</a>
                 <a class="nav-link" href="contactus.html">Contact</a>
-                <a class="cta" href="tel:+13377807870" title="Call now">Call Now</a>
+                <a class="cta" href="tel:+13377807870" title="Call now">
+                    <span class="btn">Call Now</span>
+                </a>
             </nav>
         </header>
 
         <main class="card" role="main">
             <div class="hero">
-                <div>
+                <div class="hero-left">
                     <h2>About Turner Truck & Trailer</h2>
                     <p>Dependable roadside assistance and comprehensive truck & trailer repairs — experienced technicians available 24/7 to get your fleet back on the road quickly and safely.</p>
                 </div>
+
                 <div class="cta" role="group" aria-label="Call to action">
                     <a href="contactus.html" class="btn" role="button">Get Help Now</a>
                     <a href="location.html" class="btn secondary" role="button">Our Locations</a>
@@ -300,24 +219,24 @@
 
                     <p>Our technicians are available around the clock to diagnose issues, make repairs on-site, and coordinate towing or shop work as needed. We serve long-haul drivers, local carriers, and owner-operators with the same commitment to quality.</p>
 
-                    <p>We pride ourselves on transparency, clear communication, and workmanship—every job is handled with care so you can get back on the road with confidence.</p>
+                    <p>We pride ourselves on transparency, clear communication, and workmanship — every job is handled with care so you can get back on the road with confidence.</p>
                 </section>
 
                 <aside class="services" aria-labelledby="services-heading">
                     <h3 id="services-heading">Core Services</h3>
                     <ul class="service-list" aria-hidden="false">
-                        <li class="service-item"><div>❖</div><div><strong>Air Conditioning</strong><div style="color:var(--muted);font-size:12px;">AC diagnosis & repair</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Brake Repairs</strong><div style="color:var(--muted);font-size:12px;">Pads, lines & systems</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Lighting</strong><div style="color:var(--muted);font-size:12px;">Headlights, taillights & wiring</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Coolant Systems</strong><div style="color:var(--muted);font-size:12px;">Radiators & thermostats</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Computer Diagnostics</strong><div style="color:var(--muted);font-size:12px;">Fault codes & testing</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Suspension</strong><div style="color:var(--muted);font-size:12px;">Leafs, shocks & alignment</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Starters & Alternators</strong><div style="color:var(--muted);font-size:12px;">On-site replacement</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Fifth Wheel</strong><div style="color:var(--muted);font-size:12px;">Coupling & adjustments</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Hydraulics</strong><div style="color:var(--muted);font-size:12px;">Systems & pumps</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Liftgates</strong><div style="color:var(--muted);font-size:12px;">Repair & maintenance</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Doors</strong><div style="color:var(--muted);font-size:12px;">Roll-up & swing doors</div></div></li>
-                        <li class="service-item"><div>❖</div><div><strong>Full-Service Repairs</strong><div style="color:var(--muted);font-size:12px;">Comprehensive truck & trailer work (tires excluded)</div></div></li>
+                        <li class="service-item"><div class="service-icon">AC</div><div><strong>Air Conditioning</strong><div class="meta">AC diagnosis & repair</div></div></li>
+                        <li class="service-item"><div class="service-icon">BR</div><div><strong>Brake Repairs</strong><div class="meta">Pads, lines & systems</div></div></li>
+                        <li class="service-item"><div class="service-icon">LT</div><div><strong>Lighting</strong><div class="meta">Headlights, taillights & wiring</div></div></li>
+                        <li class="service-item"><div class="service-icon">CL</div><div><strong>Coolant Systems</strong><div class="meta">Radiators & thermostats</div></div></li>
+                        <li class="service-item"><div class="service-icon">EC</div><div><strong>Computer Diagnostics</strong><div class="meta">Fault codes & testing</div></div></li>
+                        <li class="service-item"><div class="service-icon">SU</div><div><strong>Suspension</strong><div class="meta">Leafs, shocks & alignment</div></div></li>
+                        <li class="service-item"><div class="service-icon">SA</div><div><strong>Starters & Alternators</strong><div class="meta">On-site replacement</div></div></li>
+                        <li class="service-item"><div class="service-icon">5W</div><div><strong>Fifth Wheel</strong><div class="meta">Coupling & adjustments</div></div></li>
+                        <li class="service-item"><div class="service-icon">HY</div><div><strong>Hydraulics</strong><div class="meta">Systems & pumps</div></div></li>
+                        <li class="service-item"><div class="service-icon">LG</div><div><strong>Liftgates</strong><div class="meta">Repair & maintenance</div></div></li>
+                        <li class="service-item"><div class="service-icon">DR</div><div><strong>Doors</strong><div class="meta">Roll-up & swing doors</div></div></li>
+                        <li class="service-item"><div class="service-icon">FS</div><div><strong>Full-Service Repairs</strong><div class="meta">Comprehensive truck & trailer work (tires excluded)</div></div></li>
                     </ul>
                 </aside>
             </div>
@@ -332,7 +251,17 @@
     <script>
         // set current year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Add active state to nav links based on current file name
+        (function(){
+            const path = (location.pathname || '').split('/').pop().toLowerCase() || 'index.html';
+            document.querySelectorAll('nav .nav-link').forEach(a=>{
+                const href = (a.getAttribute('href')||'').toLowerCase();
+                if(href && path.indexOf(href.replace('./','')) !== -1 || (href==='index.html' && path==='')){
+                    a.classList.add('active');
+                }
+            });
+        })();
     </script>
 </body>
-
 </html>

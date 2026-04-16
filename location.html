@@ -6,276 +6,244 @@
     <meta name="description" content="Turner Truck and Trailer LLC — Find service locations, contact details, and hours near you." />
     <title>Find a Location Near You — Turner Truck and Trailer LLC</title>
     <link rel="icon" href="TTT.png" type="image/png" />
+    <!-- Improved system font stack with Google Inter fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root{
-            --bg:#0f1720;
-            --card:#0b1220;
-            --accent:#1fb6ff;
-            --muted:#9aa6b2;
-            --text:#e6eef3;
-            --max-width:1100px;
-            --radius:10px;
-            --gap:18px;
-            --header-height:72px;
-            --shadow:0 6px 24px rgba(2,6,23,0.6);
-            --glass: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            --bg: #071029;
+            --card: rgba(15,23,36,0.7);
+            --muted: #9aa7bd;
+            --accent: #ff7a18;
+            --accent-2: #ffb37a;
+            --white: #ffffff;
+            --radius: 14px;
+            --container: 1100px;
+            --gap: 18px;
         }
 
-        /* Reset & base */
+        /* Base reset */
         *{box-sizing:border-box}
-        html,body{height:100%}
+        html,body{height:100%;margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:var(--white);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        a{color:inherit;text-decoration:none}
+        img{display:block;max-width:100%}
+
         body{
-            margin:0;
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(31,182,255,0.04), transparent),
-                                    linear-gradient(180deg, #071022 0%, #071420 60%);
-            color:var(--text);
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            line-height:1.45;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,24,0.04), transparent 6%),
+                                    linear-gradient(180deg,#051428 0%, #071029 45%, #061523 100%);
+            display:flex;
+            align-items:flex-start;
+            justify-content:center;
+            padding:28px;
+            min-height:100vh;
         }
 
-        /* Skip link for accessibility */
-        .skip-link{
-            position:absolute;
-            left:-9999px;
-            top:auto;
-            width:1px;height:1px;
-            overflow:hidden;
-        }
-        .skip-link:focus{
-            left:1rem; top:1rem;
-            width:auto; height:auto;
-            padding:.5rem .75rem;
-            background:#fff; color:#000;
-            border-radius:6px; z-index:9999;
+        .site{
+            width:100%;
+            max-width:var(--container);
+            padding:10px;
         }
 
         header{
-            position:sticky;
-            top:0;
-            z-index:1000;
-            backdrop-filter: blur(6px);
-            background: rgba(5,10,18,0.6);
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            box-shadow: var(--shadow);
-        }
-
-        .header-inner{
-            max-width:var(--max-width);
-            margin:0 auto;
-            padding:12px 18px;
             display:flex;
             gap:var(--gap);
             align-items:center;
-            height:var(--header-height);
+            justify-content:space-between;
+            padding:14px 18px;
+            border-radius:18px;
+            background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.03);
+            box-shadow:0 10px 30px rgba(2,6,23,0.6);
+            backdrop-filter: blur(6px);
         }
 
-        .brand{
-            display:flex;
-            align-items:center;
-            gap:12px;
-            text-decoration:none;
-            color:var(--text);
+        .brand{display:flex;gap:14px;align-items:center}
+        .brand img{
+            width:56px;height:56px;object-fit:contain;border-radius:10px;padding:6px;
+            background:linear-gradient(135deg,var(--accent),var(--accent-2));
+            flex-shrink:0;
+            box-shadow:0 6px 18px rgba(255,122,24,0.12);
         }
-        .brand img{width:48px; height:48px; object-fit:contain; border-radius:8px}
-        .brand .title{
-            line-height:1;
-            font-weight:700;
-            letter-spacing:0.2px;
-            font-size:18px;
+        .brand h1{margin:0;font-size:16px;line-height:1.05;font-weight:800}
+        .brand .tag{font-size:12px;color:var(--muted);margin-top:3px}
+
+        nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+        nav a.nav-link{
+            padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px;color:var(--muted);
+            transition:all .18s ease;
         }
-        nav{margin-left:auto}
-        .nav-list{
-            display:flex;
-            gap:12px;
-            align-items:center;
-            list-style:none;
-            margin:0; padding:0;
-        }
-        .nav-list a{
-            display:inline-block;
-            color:var(--text);
-            text-decoration:none;
-            font-weight:600;
-            padding:8px 12px;
-            border-radius:8px;
-            transition:all .12s ease;
-            border:1px solid transparent;
-            background:transparent;
-        }
-        .nav-list a:hover,
-        .nav-list a:focus{
-            background:rgba(255,255,255,0.03);
-            transform:translateY(-2px);
-            border-color:rgba(255,255,255,0.03);
-            outline:none;
-        }
-        .cta{
-            background:linear-gradient(90deg,var(--accent),#3bb0ff);
-            border:none;
-            color:#042;
-            font-weight:700;
+        nav a.nav-link:hover{background:rgba(255,255,255,0.03);color:var(--white);transform:translateY(-1px)}
+        nav a.nav-link.active{
+            background:linear-gradient(90deg,var(--accent),var(--accent-2));
+            color:#071029;box-shadow:0 10px 28px rgba(255,122,24,0.12);
         }
 
-        main{
-            max-width:var(--max-width);
-            margin:28px auto;
-            padding:22px;
+        .cta-call{
+            display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;
+            background:linear-gradient(90deg,var(--accent),var(--accent-2));
+            color:#071029;font-weight:800;font-size:14px;box-shadow:0 8px 20px rgba(255,122,24,0.08);
+        }
+
+        main.card{
+            margin-top:18px;padding:22px;border-radius:var(--radius);width:100%;
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border:1px solid rgba(255,255,255,0.04);box-shadow:0 12px 40px rgba(2,6,23,0.6);
         }
 
         .hero{
-            background:var(--card);
-            border-radius:var(--radius);
-            padding:22px;
-            box-shadow:var(--shadow);
-            display:grid;
-            gap:16px;
-            grid-template-columns:1fr;
-            align-items:start;
+            display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start;margin-bottom:12px;
         }
 
-        .hero header{
-            padding:0;
-            box-shadow:none;
-            background:transparent;
+        .hero-left{
+            animation:fadeUp .35s ease both;
         }
 
-        .hero h1{
-            margin:0;
-            font-size:20px;
-            color:var(--text);
-        }
-        .hero p{
-            margin:6px 0 0;
-            color:var(--muted);
-            font-size:14px;
-        }
+        .hero h1{margin:0 0 8px 0;font-size:22px;letter-spacing:-0.3px}
+        .hero p{margin:0;color:var(--muted);font-size:15px}
 
         .map-wrapper{
-            margin-top:12px;
-            border-radius:10px;
-            overflow:hidden;
-            border:1px solid rgba(255,255,255,0.03);
-            background:var(--glass);
+            margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);
+            box-shadow:0 10px 30px rgba(2,6,23,0.45);height:360px;
         }
-        /* keep a responsive aspect ratio for the embedded map */
-        .map{
-            width:100%;
-            aspect-ratio: 16 / 9;
-            border:0;
-            display:block;
+        .map-wrapper .map{
+            width:100%;height:100%;border:0;display:block;
         }
 
-        .info-row{
-            display:flex;
-            gap:12px;
-            flex-wrap:wrap;
-            justify-content:space-between;
-            margin-top:16px;
-        }
+        .info-row{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
         .info-card{
-            background:rgba(255,255,255,0.02);
-            padding:12px 14px;
-            border-radius:8px;
-            min-width:220px;
-            flex:1;
+            background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+            padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+            color:var(--muted);font-size:14px;min-width:130px;
+            box-shadow:0 6px 18px rgba(2,6,23,0.25);
         }
-        .info-card h3{margin:0 0 6px; font-size:14px}
-        .info-card p{margin:0; color:var(--muted); font-size:13px}
+        .info-card h3{margin:0 0 6px 0;font-size:13px;color:var(--white)}
+
+        aside{padding:12px}
+        .quick{background:rgba(255,255,255,0.02);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+        .quick h3{margin:0 0 8px 0;font-size:15px}
+        .quick ul{list-style:none;padding:0;margin:0}
+        .quick a{display:block;padding:8px 0;color:var(--accent);font-weight:700}
+
+        .content{
+            display:grid;grid-template-columns:1fr;gap:12px;
+        }
 
         footer{
-            max-width:var(--max-width);
-            margin:22px auto 56px;
-            padding:12px 18px;
-            color:var(--muted);
-            font-size:13px;
-            text-align:center;
+            margin-top:18px;color:var(--muted);font-size:13px;padding:12px;border-radius:12px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+            border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 26px rgba(2,6,23,0.35);
+            display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
         }
 
-        /* Responsive */
-        @media (min-width:820px){
-            .hero{
-                grid-template-columns: 1fr 380px;
-            }
-            .map-wrapper{grid-column:1 / -1}
+        /* small refinements */
+        .brand h1 strong{font-weight:800}
+        .muted{color:var(--muted);font-size:13px}
+        .btn{
+            display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);font-weight:700;
         }
+
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr 320px}
+            .map-wrapper{height:320px}
+        }
+        @media (max-width:760px){
+            header{flex-direction:column;align-items:stretch}
+            nav{justify-content:space-between}
+            .hero{grid-template-columns:1fr;gap:14px}
+            .map-wrapper{height:320px}
+            aside{order:2}
+        }
+        @media (max-width:420px){
+            .brand img{width:48px;height:48px}
+            .map-wrapper{height:260px}
+            .cta-call{width:100%;justify-content:center}
+        }
+
+        @keyframes fadeUp{
+            from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}
+        }
+
+        /* focus styles for accessibility */
+        a:focus, button:focus { outline:3px solid rgba(255,122,24,0.18); outline-offset:3px; border-radius:8px }
     </style>
 </head>
 <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
-
-    <header role="banner" aria-label="Main header">
-        <div class="header-inner">
-            <a href="index.html" class="brand" aria-label="Turner Truck and Trailer home">
+    <div class="site">
+        <header>
+            <a class="brand" href="index.html" aria-label="Turner Truck and Trailer home">
                 <img src="TTT.png" alt="Turner Truck and Trailer logo">
                 <div>
-                    <div class="title">Turner Truck and Trailer LLC</div>
-                    <div style="font-size:12px; color:var(--muted)">Service • Repair • Parts</div>
+                    <h1>Turner Truck & Trailer LLC</h1>
+                    <div class="tag">24/7 Mobile Roadside Service</div>
                 </div>
             </a>
 
-            <nav aria-label="Primary navigation">
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contactus.html">Contact</a></li>
-                    <li><a href="aboutus.html">About</a></li>
-                    <li><a href="location.html" aria-current="page">Locations</a></li>
-                    <li><a href="googlereviews.html" class="cta">Reviews</a></li>
-                </ul>
+            <nav aria-label="Main navigation">
+                <a class="nav-link" href="aboutus.html">About</a>
+                <a class="nav-link active" href="location.html" aria-current="page">Locations</a>
+                <a class="nav-link" href="googlereviews.html">Reviews</a>
+                <a class="nav-link" href="contactus.html">Contact</a>
+                <a class="cta-call" href="tel:+13377807870" title="Call now">Call Now • (337) 780‑7057</a>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main id="main" role="main">
-        <section class="hero" aria-labelledby="find-location-title">
-            <div>
-                <h1 id="find-location-title">Find a Location Near You</h1>
-                <p>Locate our service centers and authorized partners. Use the interactive map to get directions, hours, and contact information.</p>
+        <main id="main" role="main" class="card">
+            <section class="hero" aria-labelledby="find-location-title">
+                <div class="hero-left">
+                    <h1 id="find-location-title">Find a Location Near You</h1>
+                    <p>Locate our service centers and authorized partners. Use the interactive map to get directions, hours, and contact information.</p>
 
-                <div class="map-wrapper" aria-hidden="false" aria-label="Interactive map of locations">
-                    <iframe
-                        class="map"
-                        loading="lazy"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        src="https://www.google.com/maps/d/embed?mid=1uzwBed2Uvq57CEIKqYsXYP8eLboR03A&hl=en&ehbc=2E312F"
-                        title="Turner Truck and Trailer — Locations map"
-                        allowfullscreen
-                    ></iframe>
+                    <div class="map-wrapper" aria-hidden="false" aria-label="Interactive map of locations">
+                        <iframe
+                            class="map"
+                            loading="lazy"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            src="https://www.google.com/maps/d/embed?mid=1uzwBed2Uvq57CEIKqYsXYP8eLboR03A&hl=en&ehbc=2E312F"
+                            title="Turner Truck and Trailer — Locations map"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+
+                    <div class="info-row" aria-hidden="false">
+                        <div class="info-card" role="region" aria-labelledby="hours-title">
+                            <h3 id="hours-title">Hours</h3>
+                            <p>Mon–Sun: 24/7</p>
+                        </div>
+                        <div class="info-card" role="region" aria-labelledby="contact-title">
+                            <h3 id="contact-title">Contact</h3>
+                            <p>Phone: (337) 780‑7057<br>Email: turnertruckandtrailer@gmail.com</p>
+                        </div>
+                        <div class="info-card" role="region" aria-labelledby="support-title">
+                            <h3 id="support-title">Need Assistance?</h3>
+                            <p>Call our dispatch team for emergency service or schedule service via our Contact page.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="info-row" aria-hidden="false">
-                    <div class="info-card" role="region" aria-labelledby="hours-title">
-                        <h3 id="hours-title">Hours</h3>
-                        <p>Mon–Sun: 24/7</p>
+                <aside aria-label="Quick links">
+                    <div class="quick">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="contactus.html">Request Service</a></li>
+                            <li><a href="aboutus.html">Our Services</a></li>
+                            <li><a href="googlereviews.html">Customer Reviews</a></li>
+                        </ul>
                     </div>
-                    <div class="info-card" role="region" aria-labelledby="contact-title">
-                        <h3 id="contact-title">Contact</h3>
-                        <p>Phone: (337) 780 7057 • Email: turnertruckandtrailer@gmail.com</p>
-                    </div>
-                    <div class="info-card" role="region" aria-labelledby="support-title">
-                        <h3 id="support-title">Need Assistance?</h3>
-                        <p>Call our dispatch team for emergency service or schedule service via our Contact page.</p>
-                    </div>
-                </div>
-            </div>
+                </aside>
+            </section>
 
-            <aside aria-label="Quick links" style="padding:12px;">
-                <div style="background:rgba(255,255,255,0.02); padding:14px; border-radius:8px;">
-                    <h3 style="margin-top:0; font-size:15px">Quick Links</h3>
-                    <ul style="list-style:none; padding:0; margin:8px 0 0;">
-                        <li><a href="contactus.html" style="color:var(--accent); text-decoration:none; font-weight:600">Request Service</a></li>
-                        <li><a href="aboutus.html" style="color:var(--text); text-decoration:none; display:block; margin-top:8px">Our Services</a></li>
-                        <li><a href="googlereviews.html" style="color:var(--text); text-decoration:none; display:block; margin-top:8px">Customer Reviews</a></li>
-                    </ul>
+            <section class="content">
+                <div class="about-text">
+                    <p style="margin:0 0 12px 0; color:var(--muted)">Turner Truck & Trailer provides mobile roadside assistance and authorized service centers throughout the region. Use the map to filter locations, view hours, and get turn‑by‑turn directions.</p>
                 </div>
-            </aside>
-        </section>
-    </main>
+            </section>
+        </main>
 
-    <footer role="contentinfo">
-        <div>&copy; <span id="year"></span> Turner Truck and Trailer LLC — All rights reserved.</div>
-    </footer>
+        <footer role="contentinfo">
+            <div>&copy; <span id="year"></span> Turner Truck and Trailer LLC — All rights reserved.</div>
+            <div class="muted">Operated 24/7 • Dispatch: (337) 780‑7057</div>
+        </footer>
+    </div>
 
     <script>
         // keep year current

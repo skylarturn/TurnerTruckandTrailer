@@ -11,273 +11,291 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root{
-            --bg-1:#0b2545;
-            --bg-2:#08263b;
-            --card:#ffffff;
-            --muted:#6b7680;
-            --accent:#ff6b35;
-            --header-height:88px;
-            --max-width:980px;
-            --radius:12px;
-            --glass: rgba(255,255,255,0.06);
-            --shadow: 0 8px 30px rgba(7,10,25,0.45);
+        :root {
+            --bg: #071029;
+            --card: #0f1724;
+            --muted: #9aa7bd;
+            --accent: #ff7a18;
+            --accent-2: #ffb37a;
+            --white: #ffffff;
+            --radius: 12px;
+            --container: 1100px;
         }
 
-        /* Reset & base */
-        *{box-sizing:border-box}
-        html,body{height:100%}
-        body{
-            margin:0;
-            font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: linear-gradient(180deg, var(--bg-1) 0%, #0c334f 40%, #071425 100%);
-            color:#0b1a2b;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            padding-top:var(--header-height);
-            display:flex;
-            justify-content:center;
-            align-items:flex-start;
-            min-height:100vh;
-            gap:32px;
+        /* Reset-ish */
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+        a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background: linear-gradient(180deg, #051428 0%, #071029 45%, #061523 100%);
+            color: var(--white);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100vh;
         }
 
-        /* Header */
-        header{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            height:var(--header-height);
-            background:linear-gradient(90deg,#031324cc, #08192fcc);
-            backdrop-filter: blur(6px);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            z-index:1200;
-            box-shadow: 0 2px 8px rgba(3,6,12,0.45);
-        }
-
-        .header-inner{
+        .site {
             width:100%;
-            max-width:var(--max-width);
+            max-width:var(--container);
+        }
+
+        header {
             display:flex;
             align-items:center;
             justify-content:space-between;
-            padding:12px 20px;
             gap:16px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding:14px 18px;
+            border-radius:14px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+            backdrop-filter: blur(6px);
         }
 
-        .brand{
-            display:flex;
-            align-items:center;
-            gap:12px;
-            text-decoration:none;
-            color:var(--card);
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .brand img{
-            width:56px;
-            height:56px;
-            object-fit:contain;
-            border-radius:8px;
-            background:var(--glass);
-            padding:6px;
+        .brand img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: linear-gradient(135deg,var(--accent),var(--accent-2));
+            padding: 6px;
+            flex-shrink: 0;
         }
 
-        .brand .title{
-            display:flex;
-            flex-direction:column;
-            line-height:1;
+        .brand h1 {
+            font-size: 16px;
+            margin: 0;
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -0.2px;
         }
 
-        .brand .title .line1{
-            font-weight:700;
-            font-size:16px;
-            color:#fff;
-            letter-spacing:0.2px;
-        }
-        .brand .title .line2{
-            font-size:12px;
-            color:var(--muted);
-            margin-top:2px;
+        nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            -webkit-overflow-scrolling: touch;
         }
 
-        nav.nav{
-            display:flex;
-            gap:10px;
-            align-items:center;
+        nav::-webkit-scrollbar { display: none; }
+
+        nav a {
+            color: var(--muted);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        nav a{
-            color:#eaf3ff;
-            text-decoration:none;
-            font-weight:600;
-            padding:8px 12px;
-            border-radius:8px;
-            transition:all .18s ease;
-            font-size:14px;
+        nav a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+
+        nav a.active {
+            background: linear-gradient(90deg,var(--accent),var(--accent-2));
+            color: #071029;
+            box-shadow: 0 6px 18px rgba(255,122,24,0.12);
         }
 
-        nav a:hover,
-        nav a:focus{
-            transform:translateY(-2px);
-            box-shadow:0 6px 20px rgba(3,8,22,0.4);
-            background:linear-gradient(90deg,#062848,#0c3a5e);
+        /* Card wrapper for main content */
+        main.card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+            width: 100%;
+            margin-top: 18px;
         }
 
-        nav a.active{
-            background:linear-gradient(90deg,#ff6b35,#ff944d);
-            color:#081226;
-            box-shadow:0 6px 20px rgba(255,107,53,0.16);
+        /* Additional main layout tweaks */
+        main.card .content {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 20px;
+            align-items: start;
         }
 
-        /* Page container */
-        main{
-            width:100%;
-            max-width:var(--max-width);
-            padding:28px 20px;
-            display:flex;
-            flex-direction:column;
-            gap:20px;
-            align-items:center;
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 18px;
         }
 
-        .hero{
-            width:100%;
-            background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-            border-radius:var(--radius);
-            padding:28px;
-            color:#fff;
-            box-shadow:var(--shadow);
-            display:flex;
-            gap:20px;
-            align-items:center;
-            justify-content:space-between;
-            overflow:hidden;
-            border:1px solid rgba(255,255,255,0.04);
+        .hero h2 {
+            margin: 0 0 6px 0;
+            font-size: 18px;
+            letter-spacing: -0.3px;
         }
 
-        .hero .left{
-            display:flex;
-            flex-direction:column;
-            gap:8px;
-            max-width:66%;
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
         }
 
-        .hero h1{
-            margin:0;
-            color:#f6fbff;
-            font-size:20px;
-            letter-spacing:0.2px;
+        .cta {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
         }
 
-        .hero p{
-            margin:0;
-            color:var(--muted);
-            font-size:14px;
+        .btn {
+            background: var(--accent);
+            color: #071029;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .cta-row{
-            display:flex;
-            gap:10px;
-            margin-top:12px;
+        .btn.secondary {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid rgba(255,255,255,0.04);
         }
 
-        .btn{
-            display:inline-flex;
-            align-items:center;
-            gap:8px;
-            padding:10px 14px;
-            border-radius:10px;
-            background:linear-gradient(90deg,#ff6b35,#ff944d);
-            color:#071224;
-            font-weight:700;
-            text-decoration:none;
-            border:none;
-            cursor:pointer;
-            font-size:14px;
-            box-shadow:0 8px 22px rgba(255,107,53,0.14);
-        }
-        .btn.ghost{
-            background:transparent;
-            border:1px solid rgba(255,255,255,0.06);
-            color:#eaf3ff;
-            box-shadow:none;
-            font-weight:600;
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 20px;
+            align-items: start;
         }
 
-        /* Card for reviews */
-        .card{
-            width:100%;
-            background:var(--card);
-            border-radius:var(--radius);
-            padding:22px;
-            box-shadow:0 10px 34px rgba(2,8,20,0.18);
-            overflow:hidden;
-            color:#0b1a2b;
-            border:1px solid rgba(6,12,20,0.04);
+        .about-text {
+            color: #e6eefc;
+            line-height: 1.55;
+            font-size: 15px;
         }
 
-        .card h2{
-            margin:0 0 12px 0;
-            font-size:18px;
-            color:#071224;
+        .about-text p { margin: 0 0 12px 0; }
+
+        .services {
+            background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.03);
         }
 
-        .card p.lead{
-            margin:0 0 18px 0;
-            color:var(--muted);
-            font-size:14px;
+        .services h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            color: var(--white);
         }
 
-        .reviews-wrap{
-            width:100%;
-            display:block;
+        .service-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 12px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* Make the embedded widget appear clean inside card */
-        .sk-ww-google-reviews{
-            width:100% !important;
-            min-height:120px;
-            border-radius:10px;
-            overflow:hidden;
-            box-shadow:0 6px 22px rgba(2,8,20,0.06);
+        .service-item {
+            background: rgba(255,255,255,0.02);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
         }
 
-        /* Responsive */
-        @media (max-width:760px){
-            .hero{flex-direction:column;align-items:flex-start}
-            .hero .left{max-width:100%}
-            nav{display:none}
-            .brand img{width:48px;height:48px}
-            main{padding:18px 16px}
-            body{padding-top:98px}
+        .service-item strong { color: var(--white); font-weight: 600; font-size: 13px; }
+
+        footer {
+            margin-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            flex-wrap: wrap;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Responsive tweaks for phones */
+        @media (max-width: 980px) {
+            .content { grid-template-columns: 1fr; }
+            .hero { grid-template-columns: 1fr; text-align: left; }
+            nav { gap: 10px; }
+            main.card { padding: 18px; }
+        }
+
+        @media (max-width: 640px) {
+            .brand img { width: 48px; height: 48px; }
+            .brand h1 { font-size: 15px; }
+            .service-list { grid-template-columns: 1fr; }
+            .services { padding: 12px; }
+        }
+
+        @media (max-width: 520px) {
+            header { flex-direction: column; align-items: stretch; gap: 10px; }
+            .brand h1 { font-size: 14px; }
+            .site { padding: 0 8px; }
+            main.card { padding: 16px; border-radius: 10px; }
+            .hero { gap: 12px; }
+            .cta { width: 100%; flex-direction: column; align-items: stretch; }
+            .cta .btn { width: 100%; padding: 12px; font-size: 15px; }
+            .cta .btn.secondary { background-clip: padding-box; }
+            .content { gap: 14px; }
+            footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .service-item { font-size: 13px; gap: 8px; }
+            .brand img { width: 42px; height: 42px; }
+        }
+
+        @media (max-width: 380px) {
+            .brand h1 { font-size: 13px; }
+            .hero h2 { font-size: 16px; }
+            .about-text { font-size: 14px; }
+            .btn { padding: 10px; font-size: 14px; }
         }
     </style>
 </head>
 <body>
+    <div class="site">
     <header>
-        <div class="header-inner">
             <a class="brand" href="index.html" aria-label="Turner Truck and Trailer home">
-                <img src="TTT.png" alt="Turner Truck & Trailer logo">
-                <div class="title">
-                    <span class="line1">Turner Truck & Trailer LLC</span>
-                    <span class="line2">Commercial truck repair & service</span>
+                <img src="TTT.png" alt="Turner Truck and Trailer logo">
+                <div>
+                    <h1>Turner Truck & Trailer LLC</h1>
+                    <div style="font-size:12px;color:var(--muted);margin-top:4px">24/7 Mobile Roadside Service</div>
                 </div>
             </a>
 
-            <nav class="nav" aria-label="Main navigation">
-                <a href="index.html">Home</a>
-                <a href="contactus.html">Contact</a>
-                <a href="aboutus.html">About</a>
-                <a href="location.html">Locations</a>
-                <a href="googlereviews.html" class="active">Reviews</a>
+            <nav aria-label="Main navigation">
+                <a class="nav-link" href="aboutus.html">About</a>
+                <a class="nav-link" href="location.html">Locations</a>
+                <a class="nav-link" href="googlereviews.html">Reviews</a>
+                <a class="nav-link" href="contactus.html">Contact</a>
+                <a class="cta" href="tel:+13377807870" title="Call now">Call Now</a>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main>
+    <main class="card">
         <section class="hero" aria-hidden="false">
             <div class="left">
                 <h1>Customer Feedback — Real experiences from our clients</h1>
@@ -289,7 +307,7 @@
             </div>
         </section>
 
-        <article class="card" role="region" aria-label="Google reviews">
+        <article role="region" aria-label="Google reviews">
             <h2>Google Reviews</h2>
             <p class="lead">Recent reviews from Google. Honest feedback helps us improve and keeps us accountable to our customers.</p>
 
@@ -299,5 +317,15 @@
             </div>
         </article>
     </main>
+
+    <footer>
+        <div>© Turner Truck & Trailer LLC</div>
+        <div>
+            <a href="privacy.html" style="color:var(--muted);margin-right:12px;">Privacy</a>
+            <a href="contactus.html" style="color:var(--muted);">Contact</a>
+        </div>
+    </footer>
+
+    </div>
 </body>
 </html>
