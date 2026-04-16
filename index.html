@@ -1,145 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Turner Truck and Trailer LLC</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
     <style>
-          body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, #ff6b6b, #2c3e50);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+        :root{
+            --bg-1: #0f1724;
+            --bg-2: #0b2540;
+            --card: rgba(255,255,255,0.04);
+            --accent: #ff7a18;
+            --muted: rgba(255,255,255,0.75);
+            --glass: rgba(255,255,255,0.04);
+            --radius: 12px;
+            --max-width: 1100px;
+        }
+
+        /* Reset + base */
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 60%);
+            color:#e6eef8;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding:32px 18px;
+            gap:28px;
+        }
+
+        .site {
+            width:100%;
+            max-width:var(--max-width);
         }
 
         header {
-            background-color: #050000;
-            color: #064514;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
-            box-sizing: border-box;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding:14px 18px;
+            border-radius:14px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+            backdrop-filter: blur(6px);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .brand {
+            display:flex;
+            gap:12px;
+            align-items:center;
+            text-decoration:none;
+            color:inherit;
         }
 
-        .logo a {
-            text-decoration: none;
-            color: #064514;
+        .brand img {
+            width:64px;
+            height:64px;
+            object-fit:contain;
+            border-radius:10px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding:6px;
+            box-shadow: 0 6px 18px rgba(8,10,20,0.6);
         }
 
-        .logo img {
-            max-width: 80px;
-            height: auto;
-            margin-right: 10px;
+        .brand h1 {
+            font-family:"Montserrat", Inter, sans-serif;
+            font-size:18px;
+            margin:0;
+            letter-spacing:0.4px;
         }
 
-        h1 {
-            font-size: 24px;
-            margin: 0;
+        nav {
+            display:flex;
+            gap:10px;
+            align-items:center;
         }
 
-        .top-right-buttons {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
+        .nav-link {
+            color:var(--muted);
+            text-decoration:none;
+            font-weight:600;
+            padding:8px 12px;
+            border-radius:8px;
+            transition: all .18s ease;
+            font-size:14px;
         }
 
-        .top-right-buttons a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 15px;
-            font-weight: bold;
-            font-size: 16px;
+        .nav-link:hover{
+            color:white;
+            background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));
+            transform:translateY(-2px);
         }
 
-        section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #040000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
-            text-align: center;
+        .cta {
+            background: linear-gradient(90deg, var(--accent), #ffb26b);
+            color: #092233;
+            border: none;
+            padding:10px 14px;
+            border-radius:10px;
+            font-weight:700;
+            box-shadow: 0 8px 18px rgba(255,122,24,0.14);
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
+        /* Hero */
+        .hero {
+            display:grid;
+            grid-template-columns: 1fr 420px;
+            gap:28px;
+            align-items:center;
+            width:100%;
         }
 
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+        .hero-card{
+            background:var(--card);
+            border-radius:var(--radius);
+            padding:26px;
+            box-shadow: 0 10px 40px rgba(3,6,16,0.6);
         }
 
-        .photo-gallery img {
-            cursor: pointer;
-            transition: transform 0.3s;
+        .headline {
+            margin:0 0 10px 0;
+            font-size:26px;
+            font-weight:700;
+            color:#fff;
+            line-height:1.05;
         }
 
-        .photo-gallery img:hover {
-            transform: scale(1.1);
+        .sub {
+            color:var(--muted);
+            margin:0 0 18px 0;
+            font-size:15px;
+        }
+
+        .kpis {
+            display:flex;
+            gap:14px;
+            margin-top:8px;
+        }
+
+        .kpi {
+            background:var(--glass);
+            padding:10px 12px;
+            border-radius:10px;
+            text-align:center;
+            min-width:110px;
+        }
+
+        .kpi .num{font-weight:700; font-size:18px; color:#fff}
+        .kpi .label{font-size:12px; color:var(--muted)}
+
+        /* Right column - hero image / contact box */
+        .contact-box{
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            padding:18px;
+            border-radius:12px;
+            text-align:center;
+        }
+
+        .contact-box .phone {
+            display:block;
+            font-weight:700;
+            font-size:20px;
+            color:#fff;
+            text-decoration:none;
+            margin-bottom:6px;
+        }
+
+        .contact-box p {margin:6px 0; color:var(--muted); font-size:14px}
+
+        /* Gallery */
+        .gallery {
+            margin-top:18px;
+            background:var(--card);
+            padding:20px;
+            border-radius:12px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.5);
+        }
+
+        .photo-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap:14px;
+            margin-top:12px;
+        }
+
+        .photo-grid img{
+            width:100%;
+            height:120px;
+            object-fit:cover;
+            border-radius:10px;
+            cursor:pointer;
+            transition: transform .25s ease, box-shadow .25s ease;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.4);
+        }
+
+        .photo-grid img:hover{
+            transform:translateY(-6px) scale(1.03);
+            box-shadow: 0 16px 40px rgba(2,6,23,0.6);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position:fixed;
+            inset:0;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            background: rgba(4,8,16,0.75);
+            z-index:1200;
+            padding:28px;
+        }
+
+        .lightbox.open{ display:flex; }
+
+        .lightbox img{
+            max-width:90%;
+            max-height:80%;
+            border-radius:10px;
+            box-shadow: 0 20px 80px rgba(2,6,23,0.8);
+        }
+
+        .lightbox .caption{
+            color:var(--muted);
+            margin-top:12px;
+            text-align:center;
+            font-size:14px;
+        }
+
+        .close-btn{
+            position:fixed;
+            right:28px;
+            top:28px;
+            background:transparent;
+            border:2px solid rgba(255,255,255,0.08);
+            color:var(--muted);
+            padding:8px 10px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:700;
+        }
+
+        footer{
+            width:100%;
+            max-width:var(--max-width);
+            color:var(--muted);
+            font-size:13px;
+            text-align:center;
+            padding:10px 6px;
+            opacity:0.95;
+        }
+
+        /* Responsive */
+        @media (max-width:920px){
+            .hero{grid-template-columns: 1fr}
+            .contact-box{order:2}
+        }
+
+        @media (max-width:480px){
+            .brand img{width:52px;height:52px}
+            .headline{font-size:20px}
+            .photo-grid img{height:100px}
         }
     </style>
 </head>
+
 <body>
-
-    <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="TTT.png" alt="Logo">
-                <h1>Turner Truck and Trailer LLC</h1>
+    <div class="site">
+        <header>
+            <a class="brand" href="index.html" aria-label="Turner Truck and Trailer home">
+                <img src="TTT.png" alt="Turner Truck and Trailer logo">
+                <div>
+                    <h1>Turner Truck & Trailer LLC</h1>
+                    <div style="font-size:12px;color:var(--muted);margin-top:4px">24/7 Mobile Roadside Service</div>
+                </div>
             </a>
-        </div>
-        <div class="top-right-buttons">
-            <a href="ContactUs.html">Contact Us</a>
-            <a href="AboutUs.html">About Us</a>
-            <a href="Location.html">Locations</a>
-            <a href="GoogleReviews.html" class="google-reviews-link">Google Reviews</a>
-        </div>
-    </header>
 
-    <section>
-        <h2>Gets you where you're going. Fast. Reliable. Friendly.</h2>
-        <p>24/7 road service mechanic company here to help.</p>
+            <nav aria-label="Main navigation">
+                <a class="nav-link" href="AboutUs.html">About</a>
+                <a class="nav-link" href="Location.html">Locations</a>
+                <a class="nav-link" href="GoogleReviews.html">Reviews</a>
+                <a class="nav-link" href="ContactUs.html">Contact</a>
+                <a class="cta" href="tel:+18005551234" title="Call now">Call Now</a>
+            </nav>
+        </header>
 
-        <div class="photo-gallery">
-            <img src="semi1.jpg" alt="Gallery Image 1">
-            <img src="semi2.jpg" alt="Gallery Image 2">
-            <img src="semi10.jpg" alt="Gallery Image 3">
-            <img src="semi8.jpg" alt="Gallery Image 4">
-            <!-- Add more images as needed -->
+        <main>
+            <section class="hero">
+                <div class="hero-card">
+                    <h2 class="headline">Fast. Reliable. Friendly. Roadside truck repair when you need it most.</h2>
+                    <p class="sub">24/7 mobile mechanics for trucks and trailers — emergency service, diagnostics, and on-site repairs so you can get back on the road.</p>
+
+                    <div class="kpis" role="list">
+                        <div class="kpi" role="listitem">
+                            <div class="num">24/7</div>
+                            <div class="label">Availability</div>
+                        </div>
+                        <div class="kpi" role="listitem">
+                            <div class="num">+1k</div>
+                            <div class="label">Jobs Completed</div>
+                        </div>
+                        <div class="kpi" role="listitem">
+                            <div class="num">South Louisiana</div>
+                            <div class="label">Coverage</div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+                        <a class="cta" href="ContactUs.html">Request Service</a>
+                        <a class="nav-link" href="GoogleReviews.html">Read Reviews</a>
+                    </div>
+                </div>
+
+                <aside class="contact-box" aria-label="Contact information">
+                    <div style="font-size:13px;color:var(--muted)">Emergency Line</div>
+                    <a class="phone" href="tel:+18005551234">+1 (800) 555-1234</a>
+                    <p>On-site diagnostics and repair. Available 24/7.</p>
+                    <p style="margin-top:8px;"><strong style="color:#fff">Service Areas:</strong> Interstate corridors • Truck stops • Depots</p>
+                </aside>
+            </section>
+
+            <section class="gallery" aria-label="Photo gallery">
+                <h3 style="margin:0;color:#fff;font-size:18px;font-weight:700">Recent Jobs & Fleet</h3>
+                <p style="margin:8px 0 0 0;color:var(--muted);font-size:14px">Click an image to view larger.</p>
+
+                <div class="photo-grid" id="photoGrid">
+                    <img src="semi1.jpg" alt="Roadside repair on a semi truck 1">
+                    <img src="semi2.jpg" alt="Roadside repair on a semi truck 2">
+                    <img src="semi10.jpg" alt="Semi truck towing/assistance">
+                    <img src="semi8.jpg" alt="Mechanic working on trailer axle">
+                    <!-- Add more images as needed -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            &copy; <span id="yr"></span> Turner Truck & Trailer LLC — Licensed & Insured • Proudly serving drivers 24/7
+        </footer>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <button class="close-btn" id="lbClose" aria-label="Close image">Close</button>
+        <div style="text-align:center">
+            <img id="lbImg" src="" alt="">
+            <div class="caption" id="lbCaption"></div>
         </div>
-
-        <p>We keep you going so you can keep us going.</p>
-    </section>
+    </div>
 
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YWRESK923J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YWRESK923J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YWRESK923J');
+    </script>
 
-  gtag('config', 'G-YWRESK923J');
-</script>
+    <script>
+        // Populate year
+        document.getElementById('yr').textContent = new Date().getFullYear();
 
+        // Simple lightbox for gallery images
+        (function(){
+            const grid = document.getElementById('photoGrid');
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lbImg');
+            const lbCaption = document.getElementById('lbCaption');
+            const lbClose = document.getElementById('lbClose');
+
+            grid.addEventListener('click', (e) => {
+                const img = e.target.closest('img');
+                if(!img) return;
+                lbImg.src = img.src;
+                lbImg.alt = img.alt || '';
+                lbCaption.textContent = img.alt || '';
+                lb.classList.add('open');
+                lb.setAttribute('aria-hidden','false');
+            });
+
+            function closeBox(){
+                lb.classList.remove('open');
+                lb.setAttribute('aria-hidden','true');
+                lbImg.src = '';
+            }
+
+            lbClose.addEventListener('click', closeBox);
+            lb.addEventListener('click', (e)=>{ if(e.target === lb) closeBox(); });
+            document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeBox(); });
+        })();
+    </script>
 </body>
 </html>
-
